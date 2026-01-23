@@ -7,6 +7,7 @@ import { Services } from '@/components/Services';
 import { Team } from '@/components/Team';
 import { Process } from '@/components/Process';
 import { Testimonials } from '@/components/Testimonial';
+import { CTA } from '@/components/CTA';
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -58,8 +59,12 @@ function App() {
           <Process />
         </SectionWrapper>
 
+
         <SectionWrapper>
           <Testimonials />
+        </SectionWrapper>
+        <SectionWrapper>
+          <CTA />
         </SectionWrapper>
       </main>
     </div>

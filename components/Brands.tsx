@@ -20,12 +20,6 @@ export const Brands: React.FC = () => {
           <div className="flex items-center gap-2 font-bold text-xl">
              <Layers className="fill-black" size={28} /> Logoipsum
           </div>
-          <div className="flex items-center gap-2 font-bold text-xl">
-             <Hexagon className="fill-black" size={28} /> Logoipsum
-          </div>
-          <div className="flex items-center gap-2 font-bold text-xl">
-             <Disc className="fill-black" size={28} /> Logoipsum
-          </div>
 
         </div>
       </div>
