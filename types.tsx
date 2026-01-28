@@ -38,3 +38,16 @@ export interface FAQ {
   question: string;
   answer: string;
 }
+
+export interface SlideData {
+  id: number;
+  image: string;
+  subtitle: string;
+  title: string;
+  description: string;
+}
+
+export interface NavLink {
+  label: string;
+  href: string;
+}

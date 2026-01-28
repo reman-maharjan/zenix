@@ -1,37 +1,146 @@
-import React from 'react';
-import { Badge } from './ui/Badge';
+import React, { useState, useEffect, useRef } from 'react';
+import { SlideData } from '../types';
+import { Button } from '@/components/ui/button';
+import { ChevronRight } from 'lucide-react';
 
-export const Hero: React.FC = () => {
+const SLIDE_DURATION = 6000; // 6 seconds per slide
+
+const slides: SlideData[] = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2070', // Tech Team / Digital
+    subtitle: 'Digital Acceleration',
+    title: 'Transforming Ideas into Digital Reality',
+    description: 'We craft data-driven marketing strategies that elevate your brand and connect you with the right audience at the right time.',
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=2071', // Business Strategy
+    subtitle: 'Strategic Growth',
+    title: 'Scale Your Business With Precision',
+    description: 'Our proprietary analytics engine finds hidden opportunities in your market sector to maximize ROI and drive sustainable growth.',
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2070', // Creative / Office
+    subtitle: 'Creative Excellence',
+    title: 'Design That Speaks Volumes',
+    description: 'From UI/UX design to compelling content creation, we build digital experiences that leave a lasting impression on your customers.',
+  },
+];
+
+const Hero: React.FC = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slideIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startSlideTimer = () => {
+    if (slideIntervalRef.current) clearInterval(slideIntervalRef.current);
+    slideIntervalRef.current = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, SLIDE_DURATION);
+  };
+
+  useEffect(() => {
+    startSlideTimer();
+    return () => {
+      if (slideIntervalRef.current) clearInterval(slideIntervalRef.current);
+    };
+  }, []);
+
+  // Handle manual navigation if user clicks a bar (optional, but good UX)
+  const handleManualChange = (index: number) => {
+    setCurrentSlide(index);
+    startSlideTimer(); // Reset timer on manual interaction
+  };
+
   return (
-    <section className="pt-16 pb-12 sm:pt-20 sm:pb-16 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <Badge>Welcome to Zenix!</Badge>
-        
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15] mb-6 max-w-4xl mx-auto">
-          Connecting Your Brand to the World, One Click at a Time.
-        </h1>
-        
-        <p className="mt-4 max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed">
-          We&apos;re not just a social media marketing agency&mdash;we&apos;re your ticket to digital excellence and engagement growth. With a canvas as vast as the internet, your business has limitless potential to connect with its audience. And we&apos;re here to paint that picture of success.
-        </p>
-        
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          <button className="px-8 py-3 bg-black text-white rounded-full cursor-pointer font-medium text-lg hover:bg-gray-800 transition-colors">
-            Get in touch
-          </button>
-          <button className="px-8 py-3 bg-white text-black border cursor-pointer border-gray-300 rounded-full font-medium text-lg hover:bg-gray-50 transition-colors">
-            Book a call
-          </button>
+    <section className="relative w-full h-screen overflow-hidden flex items-center bg-gray-900">
+      
+      {/* Background Carousel */}
+      {slides.map((slide, index) => (
+        <div
+          key={slide.id}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          }`}
+        >
+          {/* Image */}
+          <div className="absolute inset-0">
+             <img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          {/* Overlay Gradient - Darker on left for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/40 to-transparent" />
         </div>
+      ))}
 
-        <div className="relative rounded-[2.5rem] overflow-hidden w-full max-w-6xl mx-auto shadow-xl">
-           <img 
-             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80" 
-             alt="Team working together" 
-             className="w-full h-auto object-cover"
-           />
+      {/* Content Container - Static Content */}
+      <div className="container max-w-7xl mx-auto px-14 md:px-18 relative z-20 pt-20">
+        <div className="max-w-7xl">
+            {/* Using content from the first slide as the static content */}
+            <div className="relative">
+              
+              <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+                {slides[0].title}
+              </h1>
+              
+              <p className="text-lg md:text-xl text-muted mb-10 leading-relaxed max-w-2xl">
+                {slides[0].description}
+              </p>
+              
+              <div className="flex flex-wrap gap-4">
+                <Button variant="default" size="lg" className="rounded-full cursor-pointer px-8 py-6 text-base font-semibold shadow-lg bg-[#c7ab86] hover:bg-[#c7ab86]/90 ">
+                  Contact Us
+                </Button>
+                <button className="flex items-center gap-2 px-6 py-3 text-white font-medium hover:text-[#c7ab86]/90 cursor-pointer transition-colors">
+                  View Portfolio <ChevronRight size={16} />
+                </button>
+              </div>
+            </div>
         </div>
       </div>
+
+      {/* Custom Progress Bar Indicators - Bottom Right Aligned */}
+      <div className="absolute bottom-12 right-6 md:right-12 z-30 w-full max-w-md pl-6">
+        <div className="flex items-center gap-4 w-full">
+            {slides.map((_, index) => (
+                <button
+                    key={index}
+                    onClick={() => handleManualChange(index)}
+                    className="group relative h-1 flex-1 bg-muted/50 rounded-full overflow-hidden transition-all hover:h-2 focus:outline-none"
+                    aria-label={`Go to slide ${index + 1}`}
+                >
+                    {/* Background track is handled by the parent div class */}
+                    
+                    {/* The Active/Filled Part */}
+                    {/* 
+                        Logic:
+                        1. If index < currentSlide: Fully filled (white)
+                        2. If index === currentSlide: Animate width from 0 to 100% over duration
+                        3. If index > currentSlide: Empty (transparent)
+                    */}
+                    <div 
+                        className={`absolute top-0 left-0 h-full bg-white rounded-full transition-all ${
+                            index < currentSlide ? 'w-full' : 
+                            index > currentSlide ? 'w-0' :
+                            ''
+                        }`}
+                        style={{
+                            animation: index === currentSlide ? `fill ${SLIDE_DURATION}ms linear forwards` : 'none',
+                            width: index < currentSlide ? '100%' : index > currentSlide ? '0%' : '0%',
+                        }}
+                    />
+                </button>
+            ))}
+        </div>
+      </div>
+
     </section>
   );
 };
+
+export default Hero;

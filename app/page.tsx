@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { Hero } from '@/components/Hero';
+import Hero from '@/components/Hero';
 import { Brands } from '@/components/Brands';
 import { Services } from '@/components/Services';
 import { Team } from '@/components/Team';
