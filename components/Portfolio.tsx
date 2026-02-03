@@ -40,7 +40,7 @@ export const Portfolio: React.FC = () => {
   const secondary = highlights.slice(1);
 
   return (
-    <section className="py-10 md:py-16 bg-white">
+    <section className="min-h-screen py-10 md:py-16 bg-white">
       <div className="container max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-10 md:mb-14">
           <div className="space-y-3">
@@ -57,7 +57,7 @@ export const Portfolio: React.FC = () => {
           {/* Primary large card */}
           <a
             href={primary.href}
-            className="group relative overflow-hidden rounded-3xl h-[260px] md:h-[360px] lg:h-[420px] bg-gray-900"
+            className="group relative overflow-hidden rounded-3xl h-[420px] md:h-[500px] lg:h-[540px] bg-gray-900"
           >
             <img
               src={primary.image}
@@ -82,13 +82,13 @@ export const Portfolio: React.FC = () => {
             </div>
           </a>
 
-          {/* Secondary stacked cards */}
+          {/* Secondary stacked cards — heights roughly half of primary */}
           <div className="grid gap-4 md:gap-6">
             {secondary.map((item) => (
               <a
                 key={item.id}
                 href={item.href}
-                className="group relative overflow-hidden rounded-3xl h-[180px] md:h-[190px] bg-gray-900"
+                className="group relative overflow-hidden rounded-3xl h-[200px] md:h-[230px] lg:h-[250px] bg-gray-900"
               >
                 <img
                   src={item.image}

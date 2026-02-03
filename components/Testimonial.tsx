@@ -30,81 +30,100 @@ const reviews = [
 ];
 
 const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
+    y: 0,
     transition: {
-      staggerChildren: 0.2
-    }
-  }
+      duration: 0.5,
+      ease: 'easeOut',
+      staggerChildren: 0.12,
+    },
+  },
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut"
-    }
-  }
+      ease: 'easeOut',
+    },
+  },
 };
 
 export const Testimonials: React.FC = () => {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Decorative background blobs */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-50/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 -z-10 pointer-events-none" />
+    <section className="py-20 md:py-24 bg-[#faf7f3] relative overflow-hidden">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(148,148,148,0.12) 60px, rgba(148,148,148,0.12) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(148,148,148,0.12) 60px, rgba(148,148,148,0.12) 61px)',
+          }}
+        />
+      </div>
 
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
-            <div className="flex justify-center mb-6">
-                <Badge>Testimonials</Badge>
+      <div className="container max-w-7xl mx-auto px-6 md:px-12 relative">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-16">
+          <div className="space-y-4 max-w-xl">
+            <div className="flex justify-start md:justify-start">
+              <Badge>Testimonials</Badge>
             </div>
-            <h2 className="text-5xl font-bold text-gray-900 mb-6 tracking-tight">What our clients say</h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto font-light">
-                Don&apos;t just take our word for it, see what the awesome people we work with have to say about their experience.
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 tracking-tight">
+              Words from teams we work with.
+            </h2>
+            <p className="text-sm md:text-base text-gray-600 leading-relaxed">
+              A few kind notes from founders, marketers and teams who trusted us with
+              their campaigns, launches and always-on content.
             </p>
+          </div>
         </div>
 
-        <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
         >
-            {reviews.map((review) => (
-                <motion.div 
-                    key={review.id} 
-                    variants={cardVariants}
-                    className="group bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative flex flex-col"
-                >
-                    <Quote className="absolute top-8 right-8 text-gray-100 fill-gray-100 w-16 h-16 -z-0 group-hover:text-gray-50 transition-colors" />
-                    
-                    <div className="flex gap-1 mb-6 relative z-10">
-                        {[1, 2, 3, 4, 5].map((s) => (
-                            <Star key={s} size={18} className="fill-yellow-400 text-yellow-400" />
-                        ))}
-                    </div>
-                    
-                    <p className="text-gray-700 text-lg leading-relaxed mb-8 relative z-10 font-light italic">
-                        &quot;{review.quote}&quot;
-                    </p>
-                    
-                    <div className="flex items-center gap-4 relative z-10 mt-auto border-t border-gray-50 pt-6">
-                        <div className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-sm tracking-wider">
-                            {review.initials}
-                        </div>
-                        <div>
-                            <p className="font-bold text-gray-900 text-base">{review.author}</p>
-                            <p className="text-gray-500 text-sm font-medium">{review.role}</p>
-                        </div>
-                    </div>
-                </motion.div>
-            ))}
+          {reviews.map((review) => (
+            <motion.article
+              key={review.id}
+              variants={cardVariants}
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl p-7 md:p-8 border border-gray-200/70 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col relative overflow-hidden"
+            >
+              <Quote className="absolute -top-4 -right-4 text-gray-100/80 fill-gray-100/80 w-20 h-20 pointer-events-none" />
+
+              <div className="flex gap-1 mb-4 relative z-10">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} size={16} className="fill-[#c7ab86] text-[#c7ab86]" />
+                ))}
+              </div>
+
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-6 relative z-10">
+                &quot;{review.quote}&quot;
+              </p>
+
+              <div className="flex items-center gap-4 mt-auto pt-5 border-t border-gray-100 relative z-10">
+                <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-gray-900 text-white flex items-center justify-center font-semibold text-xs md:text-sm tracking-widest">
+                  {review.initials}
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm md:text-base">
+                    {review.author}
+                  </p>
+                  <p className="text-gray-500 text-xs md:text-sm font-medium">
+                    {review.role}
+                  </p>
+                </div>
+              </div>
+            </motion.article>
+          ))}
         </motion.div>
       </div>
     </section>
