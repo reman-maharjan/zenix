@@ -5,7 +5,7 @@ import Link from 'next/link';
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-white pt-20 pb-10 border-t border-gray-100">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mb-16">
           {/* Left Column - Logo */}
           <div className="lg:w-1/3">
@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
             {/* Quick Links */}
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-6">Quick Links</h3>
-              <ul className="space-y-4">
+              <ul className="space-y-2">
                 <li><a href="#about" className="text-gray-600 hover:text-black transition-colors">About us</a></li>
                 <li><a href="#services" className="text-gray-600 hover:text-black transition-colors">Services</a></li>
                 <li><a href="#work" className="text-gray-600 hover:text-black transition-colors">Case studies</a></li>
@@ -34,9 +34,10 @@ export const Footer: React.FC = () => {
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-6">Contact</h3>
               <ul className="space-y-4">
-                <li className="text-gray-600">+977 984-3590789</li>
-                <li className="text-gray-600">info@nova.agency</li>
-                <li className="text-gray-600 leading-relaxed">Nova Office Complex<br/>13 Imaginary Street<br/>Manchester</li>
+                <li className="text-gray-600">+977 9843590789</li>
+                <li className="text-gray-600">+977 9708835021</li>
+                <li className="text-gray-600">zenixdigitalproductions@gmail.com</li>
+                <li className="text-gray-600 leading-relaxed">Jwagal, Lalitpur</li>
               </ul>
             </div>
 

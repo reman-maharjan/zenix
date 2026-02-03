@@ -13,26 +13,38 @@ interface Service {
 const services: Service[] = [
   {
     id: '01',
-    title: 'Social Media Marketing',
-    description: 'Craft a compelling story designed to enthral your audience. We understand the science and art behind viral campaigns. With our finger on the pulse of the latest trends, we create strategies that spark conversations and build communities.',
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop'
+    title: 'Content Creation',
+    description: 'We create high-quality, engaging content that tells your brand story and connects with your audience. From written content to visual creatives, everything is crafted to align with your brand voice and marketing goals. Our content is designed to inform, inspire, and drive action across all digital platforms.',
+    image: 'https://images.unsplash.com/photo-1726066012749-f81bf4422d4e?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29udGVudCUyMGNyZWF0aW9ufGVufDB8fDB8fHww'
   },
   {
     id: '02',
-    title: 'Digital Advertising',
-    description: 'Maximize your ROI with our data-driven digital advertising campaigns. We specialize in PPC, display ads, and social media advertising to target the right audience at the right time, ensuring every dollar spent contributes to your growth.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop'
+    title: 'Photography & Videography',
+    description: 'We produce professional photos and videos that capture the essence of your brand. From product shoots to brand films and social media visuals, our visuals are crafted to stand out and leave a lasting impression. High-quality visuals help build trust, credibility, and stronger audience engagement.',
+    image: 'https://images.unsplash.com/photo-1621701816825-b5abfadae6c3?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHBob3RvZ3JhcGh5JTIwYW5kJTIwdmlkZW9ncmFwaHl8ZW58MHx8MHx8fDA%3D'
   },
   {
     id: '03',
-    title: 'Engagement Growth',
-    description: 'Building a loyal community is key. We implement organic growth strategies that foster genuine connections with your audience, turning followers into brand advocates through consistent, meaningful interaction.',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop'
+    title: 'Social Media Management',
+    description: 'We manage your social media presence with a strategic, consistent, and creative approach. From content planning and posting to audience engagement and performance tracking, we handle it all. Our goal is to grow your following, boost engagement, and turn social media into a powerful marketing channel.',
+    image: 'https://plus.unsplash.com/premium_photo-1683977922495-3ab3ce7ba4e6?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  },
+  {
+    id: '04',
+    title: 'Graphic Design',
+    description: 'We design visually compelling graphics that bring your brand to life. From logos and brand identity to social media creatives, ads, and marketing materials, our designs are both creative and strategic. Every design is crafted to ensure consistency, clarity, and strong visual impact.',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2064&auto=format&fit=crop'
+  },
+  {
+    id: '05',
+    title: 'Web Development',
+    description: 'We design and develop modern, responsive, and user-friendly websites that reflect your brand identity. Our websites are optimized for performance, speed, and conversions across all devices. Whether it\'s a simple site or a complex platform, we build solutions that support your business growth.',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2069&auto=format&fit=crop'
   }
 ];
 
 export const Services: React.FC = () => {
-  const [openId, setOpenId] = useState<string | null>('01');
+  const [openId, setOpenId] = useState<string | null>(null);
 
   const toggleService = (id: string) => {
     setOpenId(openId === id ? null : id);
@@ -41,11 +53,8 @@ export const Services: React.FC = () => {
   return (
     <section id="services" className="py-20 bg-white mx-4 my-8">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center mb-16">
-        <div className="flex justify-center">
-           <Badge>What we do</Badge>
-        </div>
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-        <p className="text-xl text-gray-600">Propel Your Presence with Proven Expertise</p>
+
+        <h2 className="text-4xl font-bold  text-gray-900 mb-4">Our Services</h2>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-6">
@@ -61,7 +70,7 @@ export const Services: React.FC = () => {
               className="flex justify-between items-center p-6 md:p-10 cursor-pointer"
               onClick={() => toggleService(service.id)}
             >
-              <h3 className="text-2xl md:text-3xl font-medium text-gray-900">{service.title}</h3>
+              <h3 className="text-2xl md:text-2xl font-medium text-gray-900">{service.title}</h3>
               <button 
                 className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                   openId === service.id ? 'bg-[#c7ab86] rotate-0' : 'bg-white border border-gray-200 rotate-0 hover:bg-[#c7ab86] hover:border-[#c7ab86]'
@@ -96,9 +105,6 @@ export const Services: React.FC = () => {
                       <p className="text-lg text-gray-600 leading-relaxed mb-8">
                         {service.description}
                       </p>
-                      <button className="self-start px-8 py-3 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-colors">
-                        Learn more
-                      </button>
                    </div>
                 </div>
               </div>

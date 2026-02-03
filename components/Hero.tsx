@@ -15,7 +15,7 @@ const slides: SlideData[] = [
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=2071', // Business Strategy
+    image: 'https://images.unsplash.com/photo-1726066012751-2adfb5485977?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Business Strategy
     subtitle: 'Strategic Growth',
     title: 'Scale Your Business With Precision',
     description: 'Our proprietary analytics engine finds hidden opportunities in your market sector to maximize ROI and drive sustainable growth.',
