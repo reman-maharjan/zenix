@@ -4,6 +4,7 @@ import { motion, Variants } from 'framer-motion';
 import Hero from '@/components/Hero';
 import { Brands } from '@/components/Brands';
 import { Services } from '@/components/Services';
+import { Portfolio } from '@/components/Portfolio';
 import { Team } from '@/components/Team';
 import { Process } from '@/components/Process';
 import { Testimonials } from '@/components/Testimonial';
@@ -49,6 +50,10 @@ function App() {
 
         <SectionWrapper>
           <Services />
+        </SectionWrapper>
+
+        <SectionWrapper>
+          <Portfolio />
         </SectionWrapper>
 
         <SectionWrapper>

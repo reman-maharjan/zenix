@@ -4,14 +4,14 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle } from 'lucide-react';
 import { NavLink } from '@/types';
 import { Button } from '@/components/ui/button';
 
 const links: NavLink[] = [
-  { label: 'About', href: '#about' },
+  { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
-  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Portfolio', href: '/portfolio' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${navClasses}`}>
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="container max-w-7xl mx-auto  flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className={`text-2xl font-bold tracking-tighter uppercase flex items-center gap-2 ${logoClasses}`}>
           <div className="w-38 h-8 rounded-lg flex items-center justify-center">
@@ -125,11 +125,24 @@ const Navbar: React.FC = () => {
           })}
         </div>
 
-        {/* CTA Button */}
-        <div className="hidden md:block">
-          <Button variant={buttonVariant} size="lg" className={`rounded-full px-8 bg-[#c7ab86] cursor-pointer`}>
-            Contact Us
-          </Button>
+        {/* CTA Buttons */}
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="tel:+9779843590789"
+            className="inline-flex items-center gap-2 rounded-full bg-[#c7ab86] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#c7ab86]/90 transition-colors"
+          >
+            <Phone className="h-4 w-4" />
+            <span>Call now</span>
+          </a>
+          <a
+            href="https://wa.me/9779843590789?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20working%20with%20Zenix."
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border  px-5 py-2.5 text-sm font-semibold text-[#128C7E] bg-white hover:bg-[#e9f8f0] transition-colors"
+          >
+            <MessageCircle className="h-4 w-4" />
+            <span>WhatsApp</span>
+          </a>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -174,7 +187,26 @@ const Navbar: React.FC = () => {
               </Link>
             );
           })}
-          <Button className="w-full mt-4 rounded-full " size="lg">Contact Us</Button>
+          <div className="flex flex-col gap-3 pt-2">
+            <a
+              href="tel:+9779843590789"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#c7ab86] px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#c7ab86]/90 transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Phone className="h-4 w-4" />
+              <span>Call now</span>
+            </a>
+            <a
+              href="https://wa.me/9779843590789?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20working%20with%20Zenix."
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#25D366]/60 px-5 py-3 text-sm font-semibold text-[#128C7E] bg-white hover:bg-[#e9f8f0] transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <MessageCircle className="h-4 w-4" />
+              <span>WhatsApp</span>
+            </a>
+          </div>
         </div>
       )}
     </nav>
