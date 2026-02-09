@@ -3,7 +3,7 @@ import { SlideData } from '../types';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
 
-const SLIDE_DURATION = 6000; // 6 seconds per slide
+const SLIDE_DURATION = 6000;
 
 const slides: SlideData[] = [
   {
