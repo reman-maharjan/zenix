@@ -81,26 +81,6 @@ const ServicesHero: React.FC = () => {
             </button>
           </motion.div>
 
-          {/* Stats or Features */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="grid grid-cols-3 gap-8 mt-16 pt-12 border-t border-gray-200"
-          >
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">50+</div>
-              <div className="text-sm text-gray-600">Projects Delivered</div>
-            </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">100%</div>
-              <div className="text-sm text-gray-600">Client Satisfaction</div>
-            </div>
-            <div>
-              <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">5+</div>
-              <div className="text-sm text-gray-600">Years Experience</div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ImageLightbox } from "./ImageLightbox";
 
-type DigitalItem = {
+type PhotographyItem = {
   id: string;
   title: string;
   description?: string;
@@ -12,11 +12,11 @@ type DigitalItem = {
   slug: string;
 };
 
-type DigitalMarketingClientProps = {
-  items: DigitalItem[];
+type PhotographyClientProps = {
+  items: PhotographyItem[];
 };
 
-export const DigitalMarketingClient: React.FC<DigitalMarketingClientProps> = ({
+export const PhotographyClient: React.FC<PhotographyClientProps> = ({
   items,
 }) => {
   const [lightboxImage, setLightboxImage] = useState<{

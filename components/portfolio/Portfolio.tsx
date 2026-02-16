@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
-import { DigitalMarketingClient } from "./DigitalMarketingClient";
+import { PhotographyClient } from "./PhotographyClient";
 import { WebProjectsClient } from "./WebProjectsClient";
 
 type VideoProject = {
@@ -15,7 +15,7 @@ type VideoProject = {
   slug: string;
 };
 
-type DigitalItem = {
+type PhotographyItem = {
   id: string;
   title: string;
   description?: string;
@@ -90,7 +90,7 @@ const dynamicDigitalItems = getMediaItems("portfolio", [
   ".gif",
 ]);
 
-const DIGITAL_MARKETING_ITEMS: DigitalItem[] = dynamicDigitalItems;
+const PHOTOGRAPHY_ITEMS: PhotographyItem[] = dynamicDigitalItems;
 
 // Dynamically use all images in `public/web`
 const dynamicWebItems = getMediaItems("web", [
@@ -101,7 +101,7 @@ const dynamicWebItems = getMediaItems("web", [
   ".gif",
 ]);
 
-const WEB_PROJECTS_ITEMS: DigitalItem[] = dynamicWebItems;
+const WEB_PROJECTS_ITEMS: PhotographyItem[] = dynamicWebItems;
 
 type SectionProps = {
   id?: string;
@@ -169,15 +169,15 @@ export const PortfolioHeroSection: React.FC<PortfolioHeroProps> = ({
   );
 };
 
-export const DigitalMarketingSection: React.FC = () => {
+export const PhotographySection: React.FC = () => {
   return (
     <SectionShell
-      id="digital-marketing"
+      id="photography"
       eyebrow="Portfolio"
-      title="Digital Marketing"
+      title="Photography"
       description={undefined}
     >
-      <DigitalMarketingClient items={DIGITAL_MARKETING_ITEMS} />
+      <PhotographyClient items={PHOTOGRAPHY_ITEMS} />
     </SectionShell>
   );
 };
@@ -246,14 +246,14 @@ export const Portfolio: React.FC = () => {
       >
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <Link
-            href="/portfolio/digital-marketing"
+            href="/portfolio/photography"
             className="group flex flex-col rounded-xl bg-card border border-border shadow-sm px-4 py-5 hover:border-primary/60 transition-colors"
           >
             <h3 className="text-base font-semibold text-foreground mb-1 group-hover:text-primary">
-              Digital Marketing
+              Photography
             </h3>
             <p className="text-sm text-muted-foreground">
-              Campaigns, creatives, and performance-focused social content.
+              Professional photography, visual storytelling, and captured moments.
             </p>
           </Link>
           <Link

@@ -112,10 +112,10 @@ const Navbar: React.FC = () => {
                   <div className="absolute left-0 top-full mt-1 w-56 rounded-md bg-white shadow-lg opacity-0 transition-all duration-200 ease-out group-hover:opacity-100">
                     <div className="py-2">
                       <Link
-                        href="/portfolio/digital-marketing"
+                        href="/portfolio/photography"
                         className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-50 hover:text-[#c7ab86]"
                       >
-                        Digital Marketing
+                        Photography
                       </Link>
                       <Link
                         href="/portfolio/video-projects"
@@ -232,11 +232,11 @@ const Navbar: React.FC = () => {
                   </button>
                   <div className="mt-2 space-y-1 pl-4 text-base">
                     <Link
-                      href="/portfolio/digital-marketing"
+                      href="/portfolio/photography"
                       className="block text-gray-700 hover:text-[#c7ab86] transition-colors"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      Digital Marketing
+                      Photography
                     </Link>
                     <Link
                       href="/portfolio/video-projects"

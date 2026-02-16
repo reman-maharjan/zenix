@@ -1,16 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-
-const brands = [
-  { name: 'Zuleika by Gahana Griha', image: '/brands/zuleika.png' },
-  { name: 'Tekkers Trio', image: '/brands/tekkers.png' },
-  { name: 'Elevations Inc.', image: '/brands/elevations.png' },
-  { name:"Brand360", image:"/brands/brand360.png"},
-  { name:"Digital Gurkha", image:"/brands/digitalgurkha.png"},
-  { name:"Yabai", image:"/brands/yabai.png"},
-];
+import { useBrands } from '@/hooks/use-brands';
 
 export const Brands: React.FC = () => {
+  const { data: brands, isLoading } = useBrands();
+
+  if (isLoading || !brands || brands.length === 0) {
+    return null; // Or a skeleton loader
+  }
+
   return (
     <section className="pt-6 pb-12 bg-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center overflow-hidden">

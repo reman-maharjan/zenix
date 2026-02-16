@@ -4,7 +4,6 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import Image from "next/image";
 import { Video as VideoType } from "@/types/videos";
 
 interface VideosCarouselProps {
@@ -20,63 +19,41 @@ const VideoCard: React.FC<{
   const videoRef = useRef<HTMLVideoElement>(null);
   
   useEffect(() => {
-    if (video.type === "video" && videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.play().catch(e => console.error("Error playing video:", e));
-      } else {
-        videoRef.current.pause();
-      }
+    if (isPlaying && videoRef.current) {
+      videoRef.current.play().catch(e => console.error("Error playing video:", e));
+    } else if (videoRef.current) {
+      videoRef.current.pause();
     }
-  }, [isPlaying, video.type]);
+  }, [isPlaying]);
 
   return (
     <div className="shrink-0 group">
       <div className=" ">
         <div className="relative overflow-hidden rounded-2xl bg-black/90 w-64 sm:w-72 h-96 sm:h-120">
           <div className="relative w-full h-full">
-            {video.type === "video" ? (
+            <video 
+              ref={videoRef}
+              src={video.url} 
+              className="w-full h-full object-cover"
+              controls={isPlaying}
+              playsInline
+              muted={false}
+              loop
+            />
+            {!isPlaying && (
               <>
-                <video 
-                  ref={videoRef}
-                  src={video.url} 
-                  className="w-full h-full object-cover"
-                  controls={isPlaying}
-                  playsInline
-                  muted={false}
-                  loop
-                />
-                {!isPlaying && (
-                  <>
-                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
-                    <button
-                      onClick={onPlay}
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 rounded-full bg-black backdrop-blur-md p-6 transition-all duration-300 hover:scale-110 hover:bg-white shadow-2xl cursor-pointer"
-                      aria-label="Play video"
-                    >
-                      <Play
-                        className="w-12 h-12 text-[#c7aa87] drop-shadow-lg"
-                        fill="currentColor"
-                      />
-                    </button>
-                  </>
-                )}
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+                <button
+                  onClick={onPlay}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 rounded-full bg-black backdrop-blur-md p-6 transition-all duration-300 hover:scale-110 hover:bg-white shadow-2xl cursor-pointer"
+                  aria-label="Play video"
+                >
+                  <Play
+                    className="w-12 h-12 text-[#c7aa87] drop-shadow-lg"
+                    fill="currentColor"
+                  />
+                </button>
               </>
-            ) : (
-              <div className="relative w-full h-full group-hover:scale-105 transition-transform duration-500">
-                <Image
-                  src={video.url}
-                  alt={video.title || "Web Project"}
-                  fill
-                  className="object-cover"
-                  sizes="288px"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white font-medium text-lg leading-tight drop-shadow-sm">
-                    {video.title}
-                  </p>
-                </div>
-              </div>
             )}
           </div>
         </div>
