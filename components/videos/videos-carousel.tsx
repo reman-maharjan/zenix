@@ -48,12 +48,7 @@ const VideoCard: React.FC<{
                  <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
                  {/* Overlay Content */}
                  <div className="absolute top-3 left-3 z-10 pointer-events-none">
-                  <div
-                    className="flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-sm"
-                  >
-                    <FileVideo className="w-3.5 h-3.5" />
-                    <span>Video</span>
-                  </div>
+
                 </div>
 
                 <button
@@ -107,14 +102,14 @@ export const VideosCarousel: React.FC<VideosCarouselProps> = ({ videos }) => {
             className="absolute left-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 p-3 transition-all hover:scale-110 hover:bg-white shadow-lg"
             aria-label="Scroll left"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-800" />
+            <ChevronLeft className="w-6 h-6 text-gray-800 cursor-pointer" />
           </button>
           <button
             onClick={() => scroll("right")}
             className="absolute right-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white/95 p-3 transition-all hover:scale-110 hover:bg-white shadow-lg"
             aria-label="Scroll right"
           >
-            <ChevronRight className="w-6 h-6 text-gray-800" />
+            <ChevronRight className="w-6 h-6 text-gray-800 cursor-pointer" />
           </button>
         </>
       )}
