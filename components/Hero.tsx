@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { SlideData } from '../types';
 import { Button } from '@/components/ui/button';
 import { ChevronRight } from 'lucide-react';
@@ -8,21 +9,21 @@ const SLIDE_DURATION = 6000;
 const slides: SlideData[] = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2070', // Tech Team / Digital
+    image: '/hero/img1.jpg', // Tech Team / Digital
     subtitle: 'Digital Acceleration',
     title: 'Transforming Ideas into Digital Reality',
     description: 'We craft data-driven marketing strategies that elevate your brand and connect you with the right audience at the right time.',
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1726066012751-2adfb5485977?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Business Strategy
+    image: '/hero/img2.jpg', // Business Strategy
     subtitle: 'Strategic Growth',
     title: 'Scale Your Business With Precision',
     description: 'Our proprietary analytics engine finds hidden opportunities in your market sector to maximize ROI and drive sustainable growth.',
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=2070', // Creative / Office
+    image: '/hero/img3.jpg', // Creative / Office
     subtitle: 'Creative Excellence',
     title: 'Design That Speaks Volumes',
     description: 'From UI/UX design to compelling content creation, we build digital experiences that leave a lasting impression on your customers.',
@@ -65,16 +66,14 @@ const Hero: React.FC = () => {
           }`}
         >
           {/* Image */}
-          <div className="absolute inset-0">
-             <img
-              src={slide.image}
-              alt={slide.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          
-          {/* Overlay Gradient - Darker on left for text legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/40 to-transparent" />
+          <Image
+            src={slide.image}
+            alt={slide.title}
+            fill
+            priority={index === 0}
+            className="object-cover"
+            sizes="100vw"
+          />
         </div>
       ))}
 
@@ -84,11 +83,11 @@ const Hero: React.FC = () => {
             {/* Using content from the first slide as the static content */}
             <div className="relative">
               
-              <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 {slides[0].title}
               </h1>
               
-              <p className="text-lg md:text-xl text-muted mb-10 leading-relaxed max-w-2xl">
+              <p className="text-lg md:text-xl text-white mb-10 leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                 {slides[0].description}
               </p>
               
@@ -96,7 +95,7 @@ const Hero: React.FC = () => {
                 <Button variant="default" size="lg" className="rounded-full cursor-pointer px-8 py-6 text-base font-semibold shadow-lg bg-[#c7ab86] hover:bg-[#c7ab86]/90 ">
                   Contact Us
                 </Button>
-                <button className="flex items-center gap-2 px-6 py-3 text-white font-medium hover:text-[#c7ab86]/90 cursor-pointer transition-colors">
+                <button className="flex items-center gap-2 px-6 py-3 text-white font-medium hover:text-[#c7ab86]/90 cursor-pointer transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                   View Portfolio <ChevronRight size={16} />
                 </button>
               </div>

@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Calendar } from 'lucide-react';
 import { PortfolioItem } from '@/lib/portfolioData';
+import Link from 'next/link';
 
 type CompanyOverviewProps = {
   portfolio: PortfolioItem;
@@ -20,9 +21,9 @@ const CompanyOverview: React.FC<CompanyOverviewProps> = ({ portfolio }) => {
           transition={{ duration: 0.5 }}
           className="mb-8 flex items-center gap-2 text-sm text-gray-500"
         >
-          <a href="/portfolio" className="hover:text-[#c7ab86] transition-colors">
+          <Link href="/portfolio" className="hover:text-[#c7ab86] transition-colors">
             Portfolio
-          </a>
+          </Link>
           <span>/</span>
           <span className="text-gray-900">{portfolio.client}</span>
         </motion.div>

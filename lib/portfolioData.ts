@@ -53,11 +53,11 @@ export const portfolioData: PortfolioItem[] = [
     videos: [
       {
         title: 'Ribbon Ring Showcase',
-        path: '/portfoliovideos/Zuleika/ribbon ring.mov',
+        path: '/portfoliovideos/Zuleika/ribbon ring.mp4',
       },
       {
         title: 'What Do You Have',
-        path: '/portfoliovideos/Zuleika/what do you have.mov',
+        path: '/portfoliovideos/Zuleika/what do you have.mp4',
       },
       {
         title: 'Collection Highlight',
@@ -98,11 +98,11 @@ export const portfolioData: PortfolioItem[] = [
     videos: [
       {
         title: 'HiFuture Ultra 3 Pro',
-        path: '/portfoliovideos/HiFuture/HiFuture Ultra 3 Pro v3.mov',
+        path: '/portfoliovideos/HiFuture/HiFuture Ultra 3 Pro v3.mp4',
       },
       {
         title: 'Product Mix',
-        path: '/portfoliovideos/HiFuture/mix v1.mov',
+        path: '/portfoliovideos/HiFuture/mix v1.mp4',
       },
     ],
   },
@@ -131,23 +131,23 @@ export const portfolioData: PortfolioItem[] = [
     videos: [
       {
         title: 'Yeelight Unboxing',
-        path: '/portfoliovideos/elevations/Yeelight unboxing.mov',
+        path: '/portfoliovideos/elevations/Yeelight unboxing.mp4',
       },
       {
         title: 'Pegboard Organization',
-        path: '/portfoliovideos/elevations/pegboard new.mov',
+        path: '/portfoliovideos/elevations/pegboard new.mp4',
       },
       {
         title: 'Statement Chair',
-        path: '/portfoliovideos/elevations/statement chair final.mov',
+        path: '/portfoliovideos/elevations/statement chair final.mp4',
       },
       {
         title: 'Product Showcase',
-        path: '/portfoliovideos/elevations/v2.mov',
+        path: '/portfoliovideos/elevations/v2.mp4',
       },
       {
         title: 'Weekly Planner',
-        path: '/portfoliovideos/elevations/weekly planner2.mov',
+        path: '/portfoliovideos/elevations/weekly planner2.mp4',
       },
     ],
   },
@@ -180,7 +180,7 @@ export const portfolioData: PortfolioItem[] = [
       },
       {
         title: 'The Locals',
-        path: '/portfoliovideos/memomama/the locals.mov',
+        path: '/portfoliovideos/memomama/the locals.mp4',
       },
     ],
   },

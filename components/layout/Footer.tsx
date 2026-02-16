@@ -1,6 +1,7 @@
 import React from 'react';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ export const Footer: React.FC = () => {
           {/* Left Column - Logo */}
           <div className="lg:w-1/3">
              <Link href="/" className="inline-block px-7 py-2 rounded-full mb-8 transition-transform hover:scale-105">
-              <img src="/logo-dark.png" alt="Logo" className="w-60 h-60" />
+              <Image src="/logo-dark.png" alt="Logo" width={240} height={240} className="w-60 h-60" />
             </Link>
           </div>
 
@@ -20,10 +21,10 @@ export const Footer: React.FC = () => {
             <div>
               <h3 className="text-lg font-bold text-gray-900 mb-6">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="/about" className="text-gray-600 hover:text-black transition-colors">About us</a></li>
-                <li><a href="/services" className="text-gray-600 hover:text-black transition-colors">Services</a></li>
-                <li><a href="/portfolio" className="text-gray-600 hover:text-black transition-colors">Portfolio</a></li>
-                <li><a href="/contact" className="text-gray-600 hover:text-black transition-colors">Contact</a></li>
+                <li><Link href="/about" className="text-gray-600 hover:text-black transition-colors">About us</Link></li>
+                <li><Link href="/services" className="text-gray-600 hover:text-black transition-colors">Services</Link></li>
+                <li><Link href="/portfolio" className="text-gray-600 hover:text-black transition-colors">Portfolio</Link></li>
+                <li><Link href="/contact" className="text-gray-600 hover:text-black transition-colors">Contact</Link></li>
               </ul>
             </div>
 
@@ -43,37 +44,37 @@ export const Footer: React.FC = () => {
               <h3 className="text-lg font-bold text-gray-900 mb-6">Follow us</h3>
               <ul className="space-y-4">
                 <li>
-                  <a href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
+                  <Link href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
                     <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
                       <Facebook size={18} fill="currentColor" />
                     </span>
                     Facebook
-                  </a>
+                  </Link>
                 </li>
                  <li>
-                  <a href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
+                  <Link href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
                     <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
                       <Instagram size={18} />
                     </span>
                     Instagram
-                  </a>
+                  </Link>
                 </li>
                  <li>
-                  <a href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
+                  <Link href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
                     <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
                       {/* Using Twitter icon for X as placeholder, styled to look similar in shape/context */}
                       <Twitter size={18} fill="currentColor" />
                     </span>
                     X
-                  </a>
+                  </Link>
                 </li>
                  <li>
-                  <a href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
+                  <Link href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
                     <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
                       <Linkedin size={18} fill="currentColor" />
                     </span>
                     LinkedIn
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -84,8 +85,8 @@ export const Footer: React.FC = () => {
         <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
            <p>© {new Date().getFullYear()} Nova Agency. All rights reserved.</p>
            <div className="flex gap-8">
-             <a href="#" className="hover:text-black transition-colors">Privacy Policy</a>
-             <a href="#" className="hover:text-black transition-colors">Terms & Conditions</a>
+             <Link href="#" className="hover:text-black transition-colors">Privacy Policy</Link>
+             <Link href="#" className="hover:text-black transition-colors">Terms & Conditions</Link>
            </div>
         </div>
       </div>

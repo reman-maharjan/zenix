@@ -10,6 +10,7 @@ type TechnicalSpecsProps = {
 };
 
 const TechnicalSpecs: React.FC<TechnicalSpecsProps> = ({ services, deliverables }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const serviceIcons: Record<string, any> = {
     'Product Photography': Camera,
     'Lifestyle Videography': Video,
