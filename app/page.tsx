@@ -5,7 +5,7 @@ import Hero from '@/components/Hero';
 import { Brands } from '@/components/Brands';
 import { Services } from '@/components/Services';
 import { Process } from '@/components/Process';
-import { Testimonials } from '@/components/Testimonial';
+// import { Testimonials } from '@/components/Testimonial';
 import { CTA } from '@/components/CTA';
 import Videos from '@/components/videos/videos';
 
@@ -61,9 +61,9 @@ function App() {
         </SectionWrapper>
 
 
-        <SectionWrapper>
+        {/* <SectionWrapper>
           <Testimonials />
-        </SectionWrapper>
+        </SectionWrapper> */}
         <SectionWrapper>
           <CTA />
         </SectionWrapper>
