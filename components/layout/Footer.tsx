@@ -1,93 +1,82 @@
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-white pt-20 pb-10 border-t border-gray-100">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mb-16">
-          {/* Left Column - Logo */}
-          <div className="lg:w-1/3">
-             <Link href="/" className="inline-block px-7 py-2 rounded-full mb-8 transition-transform hover:scale-105">
-              <Image src="/logo-dark.png" alt="Logo" width={240} height={240} className="w-60 h-60" />
+    <footer className="bg-white pt-24 pb-12 border-t border-[#c7ab86]/10">
+      <div className="container max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+          {/* Brand Identity */}
+          <div className="lg:col-span-5">
+            <Link href="/" className="inline-block mb-8 transition-transform hover:scale-105">
+              <Image 
+                src="/logo-dark.png" 
+                alt="Zenix Logo" 
+                width={200} 
+                height={200} 
+                className="w-48 h-auto" 
+              />
             </Link>
+
           </div>
 
-          {/* Right Columns - Links */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+          {/* Navigation Links */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
             {/* Quick Links */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-6">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><Link href="/about" className="text-gray-600 hover:text-black transition-colors">About us</Link></li>
-                <li><Link href="/services" className="text-gray-600 hover:text-black transition-colors">Services</Link></li>
-                <li><Link href="/portfolio" className="text-gray-600 hover:text-black transition-colors">Portfolio</Link></li>
-                <li><Link href="/contact" className="text-gray-600 hover:text-black transition-colors">Contact</Link></li>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-[#c7ab86] mb-8">Navigation</h3>
+              <ul className="space-y-4">
+                <li><Link href="/about" className="text-gray-600 hover:text-[#c7ab86] transition-colors text-sm font-medium">About Us</Link></li>
+                <li><Link href="/services" className="text-gray-600 hover:text-[#c7ab86] transition-colors text-sm font-medium">Services</Link></li>
+                <li><Link href="/contact" className="text-gray-600 hover:text-[#c7ab86] transition-colors text-sm font-medium">Contact</Link></li>
               </ul>
             </div>
 
-            {/* Contact */}
+            {/* Portfolio Sections */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-6">Contact</h3>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-[#c7ab86] mb-8">Portfolio</h3>
               <ul className="space-y-4">
-                <li className="text-gray-600">+977 9843590789</li>
-                <li className="text-gray-600">+977 9708835021</li>
-                <li className="text-gray-600">zenixdigitalproductions@gmail.com</li>
-                <li className="text-gray-600 leading-relaxed">Jwagal, Lalitpur</li>
+                <li><Link href="/portfolio/photography" className="text-gray-600 hover:text-[#c7ab86] transition-colors text-sm font-medium">Photography</Link></li>
+                <li><Link href="/portfolio/video-projects" className="text-gray-600 hover:text-[#c7ab86] transition-colors text-sm font-medium">Video Projects</Link></li>
+                <li><Link href="/portfolio/web-projects" className="text-gray-600 hover:text-[#c7ab86] transition-colors text-sm font-medium">Web Projects</Link></li>
               </ul>
             </div>
 
-             {/* Follow us */}
+            {/* Contact Details */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-6">Follow us</h3>
-              <ul className="space-y-4">
+              <h3 className="text-sm font-bold uppercase tracking-widest text-[#c7ab86] mb-8">Get in Touch</h3>
+              <ul className="space-y-5">
                 <li>
-                  <Link href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
-                    <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
-                      <Facebook size={18} fill="currentColor" />
-                    </span>
-                    Facebook
-                  </Link>
+                  <a href="tel:+9779708835021" className="group flex flex-col">
+                    <span className="text-xs text-gray-400 mb-1">Call Us</span>
+                    <span className="text-gray-600 group-hover:text-[#c7ab86] transition-colors text-sm font-medium">+977 9708835021</span>
+                  </a>
                 </li>
-                 <li>
-                  <Link href="https://www.instagram.com/zenix_digital_productions/" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
-                    <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
-                      <Instagram size={18} />
-                    </span>
-                    Instagram
-                  </Link>
+                <li>
+                  <a href="mailto:zenixdigitalproductions@gmail.com" className="group flex flex-col">
+                    <span className="text-xs text-gray-400 mb-1">Email Us</span>
+                    <span className="text-gray-600 group-hover:text-[#c7ab86] transition-colors text-sm font-medium break-all">zenixdigitalproductions@gmail.com</span>
+                  </a>
                 </li>
-                 <li>
-                  <Link href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
-                    <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
-                      {/* Using Twitter icon for X as placeholder, styled to look similar in shape/context */}
-                      <Twitter size={18} fill="currentColor" />
-                    </span>
-                    X
-                  </Link>
-                </li>
-                 <li>
-                  <Link href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
-                    <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
-                      <Linkedin size={18} fill="currentColor" />
-                    </span>
-                    LinkedIn
-                  </Link>
+                <li>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-400 mb-1">Location</span>
+                    <span className="text-gray-600 text-sm font-medium leading-relaxed">Jwagal, Lalitpur</span>
+                  </div>
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-           <p>© {new Date().getFullYear()} Nova Agency. All rights reserved.</p>
-           <div className="flex gap-8">
-             <Link href="#" className="hover:text-black transition-colors">Privacy Policy</Link>
-             <Link href="#" className="hover:text-black transition-colors">Terms & Conditions</Link>
-           </div>
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-100 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-400 uppercase tracking-widest font-medium">
+          <p>© {new Date().getFullYear()} Zenix Digital Productions.</p>
+          <div className="flex gap-10">
+            <Link href="#" className="hover:text-[#c7ab86] transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-[#c7ab86] transition-colors">Terms & Conditions</Link>
+          </div>
         </div>
       </div>
     </footer>
