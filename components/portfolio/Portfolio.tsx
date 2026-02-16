@@ -6,6 +6,7 @@ import fs from "fs";
 import path from "path";
 import { PhotographyClient } from "./PhotographyClient";
 import { WebProjectsClient } from "./WebProjectsClient";
+import { VideoProjectsClient } from "./VideoProjectsClient";
 
 type VideoProject = {
   id: string;
@@ -189,30 +190,7 @@ export const VideoProjectsSection: React.FC = () => {
       className="w-full bg-background text-foreground"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {VIDEO_PROJECTS.map((video) => (
-            <Link
-              key={video.id}
-              href={`/portfolio/${video.slug}`}
-              className="group flex flex-col rounded-xl bg-card border border-border shadow-sm overflow-hidden hover:border-primary/60 transition-colors"
-            >
-              <article className="flex flex-col h-full">
-                <div className="relative aspect-4/5 bg-black">
-                  <video
-                    className="h-full w-full object-cover"
-                    src={video.src}
-                    controls
-                    playsInline
-                  />
-
-                  {/* Subtle overlay on hover to echo the reference UI */}
-                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
+        <VideoProjectsClient items={VIDEO_PROJECTS} />
       </div>
     </section>
   );

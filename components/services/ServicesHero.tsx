@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 const ServicesHero: React.FC = () => {
   return (
@@ -68,17 +69,16 @@ const ServicesHero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-wrap items-center justify-center gap-4"
           >
+            <Link href="/contact">
             <Button 
               variant="default" 
               size="lg" 
-              className="rounded-full px-8 py-6 text-base font-semibold bg-[#c7ab86] hover:bg-[#c7ab86]/90 shadow-lg hover:shadow-xl transition-all"
+              className="rounded-full cursor-pointer px-8 py-6 text-base font-semibold bg-[#c7ab86] hover:bg-[#c7ab86]/90 shadow-lg hover:shadow-xl transition-all"
             >
-              Get Started
+              Contact
             </Button>
-            <button className="flex items-center gap-2 px-6 py-3 text-gray-700 font-medium hover:text-[#c7ab86] transition-colors group">
-              View Portfolio 
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
+
           </motion.div>
 
         </div>
