@@ -42,27 +42,14 @@ export const VideoProjectsClient: React.FC<VideoProjectsClientProps> = ({
                 <video
                   className="h-full w-full object-cover"
                   src={video.src}
+                  controls
                   playsInline
-                  muted
-                  loop
-                  onMouseOver={(e) => e.currentTarget.play()}
-                  onMouseOut={(e) => {
-                    e.currentTarget.pause();
-                    e.currentTarget.currentTime = 0;
-                  }}
                 />
-                {/* Subtle overlay on hover - consistent with previous UI */}
-                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm scale-90 group-hover:scale-100 transition-transform duration-300">
-                    <svg
-                      className="w-6 h-6 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
+                {/* 
+                  Overlay to capture clicks and provide the hover effect. 
+                  Removed 'pointer-events-none' so the entire area triggers the lightbox.
+                */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </article>
           </div>
