@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Phone, MessageCircle } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle, ChevronDown } from 'lucide-react';
 import { NavLink } from '@/types';
 import { Button } from '@/components/ui/button';
 
@@ -79,10 +79,62 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center space-x-8">
           {links.map((link) => {
             const isHashLink = link.href.startsWith('#');
-            const isActive = isHashLink 
+            const isActive = isHashLink
               ? activeHash === link.href.slice(1)
               : pathname === link.href;
-            
+
+            // Desktop dropdown for Portfolio
+            if (link.label === 'Portfolio') {
+              const isPortfolioActive = pathname.startsWith('/portfolio');
+
+              return (
+                <div key={link.label} className="relative group">
+                  <button
+                    type="button"
+                    className={`relative inline-flex items-center gap-0.5 text-sm font-medium transition-colors pb-1 cursor-default ${
+                      isPortfolioActive
+                        ? 'text-[#c7ab86]'
+                        : 'text-black hover:text-[#c7ab86]'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
+                    <span
+                      className={`pointer-events-none absolute bottom-0 left-0 h-[2px] bg-[#c7ab86] transition-all duration-300 ease-in-out ${
+                        isPortfolioActive
+                          ? 'w-full'
+                          : 'w-0 group-hover:w-full'
+                      }`}
+                    />
+                  </button>
+
+                  {/* Dropdown menu */}
+                  <div className="absolute left-0 top-full mt-1 w-56 rounded-md bg-white shadow-lg opacity-0 transition-all duration-200 ease-out group-hover:opacity-100">
+                    <div className="py-2">
+                      <Link
+                        href="/portfolio/digital-marketing"
+                        className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-50 hover:text-[#c7ab86]"
+                      >
+                        Digital Marketing
+                      </Link>
+                      <Link
+                        href="/portfolio/video-projects"
+                        className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-50 hover:text-[#c7ab86]"
+                      >
+                        Video Projects
+                      </Link>
+                      <Link
+                        href="/portfolio/web-projects"
+                        className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-50 hover:text-[#c7ab86]"
+                      >
+                        Web Projects
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return isHashLink ? (
               <a
                 key={link.label}
@@ -159,10 +211,52 @@ const Navbar: React.FC = () => {
         <div className="md:hidden absolute top-full left-0 w-full bg-white text-foreground shadow-lg p-6 flex flex-col space-y-4 animate-in slide-in-from-top-5">
           {links.map((link) => {
             const isHashLink = link.href.startsWith('#');
-            const isActive = isHashLink 
+            const isActive = isHashLink
               ? activeHash === link.href.slice(1)
               : pathname === link.href;
-            
+
+            // Simple nested items for Portfolio on mobile
+            if (link.label === 'Portfolio') {
+              const isPortfolioActive = pathname.startsWith('/portfolio');
+
+              return (
+                <div key={link.label} className="border-b border-border pb-2">
+                  <button
+                    type="button"
+                    className={`flex w-full items-center justify-between text-left text-lg font-medium transition-colors ${
+                      isPortfolioActive ? 'text-[#c7ab86]' : ''
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                  <div className="mt-2 space-y-1 pl-4 text-base">
+                    <Link
+                      href="/portfolio/digital-marketing"
+                      className="block text-gray-700 hover:text-[#c7ab86] transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Digital Marketing
+                    </Link>
+                    <Link
+                      href="/portfolio/video-projects"
+                      className="block text-gray-700 hover:text-[#c7ab86] transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Video Projects
+                    </Link>
+                    <Link
+                      href="/portfolio/web-projects"
+                      className="block text-gray-700 hover:text-[#c7ab86] transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Web Projects
+                    </Link>
+                  </div>
+                </div>
+              );
+            }
+
             return isHashLink ? (
               <a
                 key={link.label}
