@@ -78,24 +78,24 @@ const Hero: React.FC = () => {
       ))}
 
       {/* Content Container - Static Content */}
-      <div className="container max-w-7xl mx-auto px-14 md:px-18 relative z-20 pt-20">
+      <div className="container max-w-7xl mx-auto px-6 sm:px-10 md:px-18 relative z-20 pt-20">
         <div className="max-w-7xl">
             {/* Using content from the first slide as the static content */}
             <div className="relative">
               
-              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 {slides[0].title}
               </h1>
               
-              <p className="text-lg md:text-xl text-white mb-10 leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+              <p className="text-base sm:text-lg md:text-xl text-white mb-10 leading-relaxed max-w-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                 {slides[0].description}
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <Button variant="default" size="lg" className="rounded-full cursor-pointer px-8 py-6 text-base font-semibold shadow-lg bg-[#c7ab86] hover:bg-[#c7ab86]/90 ">
+                <Button variant="default" size="lg" className="rounded-full cursor-pointer px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base font-semibold shadow-lg bg-[#c7ab86] hover:bg-[#c7ab86]/90 ">
                   Contact Us
                 </Button>
-                <button className="flex items-center gap-2 px-6 py-3 text-white font-medium hover:text-[#c7ab86]/90 cursor-pointer transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                <button className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 text-white font-medium hover:text-[#c7ab86]/90 cursor-pointer transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                   View Portfolio <ChevronRight size={16} />
                 </button>
               </div>
@@ -104,8 +104,8 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Custom Progress Bar Indicators - Bottom Right Aligned */}
-      <div className="absolute bottom-12 right-6 md:right-12 z-30 w-full max-w-md pl-6">
-        <div className="flex items-center gap-4 w-full">
+      <div className="absolute bottom-8 sm:bottom-12 right-6 md:right-12 z-30 w-[calc(100%-3rem)] sm:w-full max-w-md pl-6">
+        <div className="flex items-center gap-2 sm:gap-4 w-full">
             {slides.map((_, index) => (
                 <button
                     key={index}
@@ -130,7 +130,7 @@ const Hero: React.FC = () => {
                         }`}
                         style={{
                             animation: index === currentSlide ? `fill ${SLIDE_DURATION}ms linear forwards` : 'none',
-                            width: index < currentSlide ? '100%' : index > currentSlide ? '0%' : '0%',
+                            width: index < currentSlide ? '100vw' : index > currentSlide ? '0%' : '0%',
                         }}
                     />
                 </button>

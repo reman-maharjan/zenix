@@ -46,14 +46,14 @@ function App() {
         <SectionWrapper>
           <Brands />
         </SectionWrapper>
+        <SectionWrapper>
+          <Videos />
+        </SectionWrapper>
 
         <SectionWrapper>
           <Services />
         </SectionWrapper>
 
-        <SectionWrapper>
-          <Videos />
-        </SectionWrapper>
 
 
         <SectionWrapper>

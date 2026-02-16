@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
                   </Link>
                 </li>
                  <li>
-                  <Link href="#" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
+                  <Link href="https://www.instagram.com/zenix_digital_productions/" className="flex items-center gap-3 text-gray-600 hover:text-black group transition-colors">
                     <span className="bg-black text-[#c7ab86] p-2 rounded-full group-hover:bg-[#c7ab86] group-hover:text-black transition-colors">
                       <Instagram size={18} />
                     </span>

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import fs from "fs";
 import path from "path";
+import { DigitalMarketingClient } from "./DigitalMarketingClient";
+import { WebProjectsClient } from "./WebProjectsClient";
 
 type VideoProject = {
   id: string;
@@ -33,23 +35,39 @@ function getMediaItems(
   subdir: string,
   allowedExtensions: string[]
 ): { id: string; title: string; src: string; slug: string }[] {
-  const absDir = path.join(process.cwd(), "public", subdir);
+  const absRoot = path.join(process.cwd(), "public", subdir);
 
-  if (!fs.existsSync(absDir)) {
+  if (!fs.existsSync(absRoot)) {
     return [];
   }
 
-  const entries = fs
-    .readdirSync(absDir)
-    .filter((file) =>
-      allowedExtensions.includes(path.extname(file).toLowerCase())
-    );
+  const results: { relativePath: string; filename: string }[] = [];
 
-  return entries.map((file, index) => ({
+  const walk = (currentDir: string, prefix: string) => {
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const entryPath = path.join(currentDir, entry.name);
+      const relativePath = prefix ? path.join(prefix, entry.name) : entry.name;
+
+      if (entry.isDirectory()) {
+        walk(entryPath, relativePath);
+      } else {
+        const ext = path.extname(entry.name).toLowerCase();
+        if (allowedExtensions.includes(ext)) {
+          results.push({ relativePath, filename: entry.name });
+        }
+      }
+    }
+  };
+
+  walk(absRoot, "");
+
+  return results.map((file, index) => ({
     id: `${subdir}-${index + 1}`,
-    title: filenameToTitle(file),
-    src: `/${subdir}/${file}`,
-    slug: path.basename(file, path.extname(file)),
+    title: filenameToTitle(file.filename),
+    src: `/${subdir}/${file.relativePath.replace(/\\/g, "/")}`,
+    slug: path.basename(file.filename, path.extname(file.filename)),
   }));
 }
 
@@ -61,23 +79,7 @@ const dynamicVideoItems = getMediaItems("portfoliovideos", [
   ".m4v",
 ]);
 
-const VIDEO_PROJECTS: VideoProject[] =
-  dynamicVideoItems.length > 0
-    ? dynamicVideoItems
-    : [
-        {
-          id: "video-1",
-          title: "Sample Video 01",
-          src: "/portfoliovideos/video-1.mp4",
-          slug: "video-1",
-        },
-        {
-          id: "video-2",
-          title: "Sample Video 02",
-          src: "/portfoliovideos/video-2.mp4",
-          slug: "video-2",
-        },
-      ];
+const VIDEO_PROJECTS: VideoProject[] = dynamicVideoItems;
 
 // Dynamically use all images in `public/portfolio`
 const dynamicDigitalItems = getMediaItems("portfolio", [
@@ -88,23 +90,18 @@ const dynamicDigitalItems = getMediaItems("portfolio", [
   ".gif",
 ]);
 
-const DIGITAL_MARKETING_ITEMS: DigitalItem[] =
-  dynamicDigitalItems.length > 0
-    ? dynamicDigitalItems
-    : [
-        {
-          id: "digital-1",
-          title: "Sample Campaign 01",
-          src: "/portfolio/digital-1.jpg",
-          slug: "digital-1",
-        },
-        {
-          id: "digital-2",
-          title: "Sample Campaign 02",
-          src: "/portfolio/digital-2.jpg",
-          slug: "digital-2",
-        },
-      ];
+const DIGITAL_MARKETING_ITEMS: DigitalItem[] = dynamicDigitalItems;
+
+// Dynamically use all images in `public/web`
+const dynamicWebItems = getMediaItems("web", [
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  ".gif",
+]);
+
+const WEB_PROJECTS_ITEMS: DigitalItem[] = dynamicWebItems;
 
 type SectionProps = {
   id?: string;
@@ -116,61 +113,58 @@ type SectionProps = {
 
 const SectionShell: React.FC<SectionProps> = ({
   id,
-  title,
-  eyebrow,
-  description,
   children,
 }) => (
   <section id={id} className="w-full bg-background text-foreground">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <header className="mb-8 text-center">
-        {eyebrow && (
-          <p className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase">
-            {eyebrow}
-          </p>
-        )}
-        <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-primary">
-          {title}
-        </h2>
-        {description && (
-          <p className="mt-3 max-w-2xl mx-auto text-sm sm:text-base text-muted-foreground">
-            {description}
-          </p>
-        )}
-      </header>
       {children}
     </div>
   </section>
 );
 
-export const PortfolioHeroSection: React.FC = () => {
+type PortfolioHeroProps = {
+  title: string;
+  description: string;
+  backgroundImage: string;
+};
+
+export const PortfolioHeroSection: React.FC<PortfolioHeroProps> = ({
+  title,
+  backgroundImage,
+}) => {
   return (
-    <section className="w-full bg-background text-foreground border-b border-border">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <div className="max-w-xl">
-          <p className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase">
-            Portfolio
+    <section className="relative w-full h-[60vh] min-h-[500px] overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={backgroundImage}
+          alt={`${title} background`}
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/50 to-black/70" />
+      </div>
+
+      {/* Content */}
+      <div className="relative h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl">
+          {/* Eyebrow text */}
+          <p className="text-xs sm:text-sm font-semibold tracking-[0.3em] text-white/80 uppercase mb-4 animate-fade-in-up">
+            Zenix Digital Productions
           </p>
-          <h1 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-primary">
-            Selected work from Zenix Digital Productions
+          
+          {/* Main heading */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 animate-fade-in-up animation-delay-100">
+            {title}
           </h1>
-          <p className="mt-4 text-sm sm:text-base text-muted-foreground">
-            Explore campaigns, video stories, and web experiences crafted for
-            ambitious brands.
-          </p>
-        </div>
-        <div className="mt-6 sm:mt-0 sm:w-72">
-          <div className="rounded-2xl bg-card border border-border shadow-sm px-5 py-4 text-sm text-muted-foreground">
-            <p className="font-medium text-foreground mb-1">
-              A focused look at our impact.
-            </p>
-            <p>
-              Each project is tailored to the brand&apos;s voice, whether it&apos;s a
-              fast-paced social reel or a full digital campaign.
-            </p>
-          </div>
+          
+          
         </div>
       </div>
+
     </section>
   );
 };
@@ -183,32 +177,7 @@ export const DigitalMarketingSection: React.FC = () => {
       title="Digital Marketing"
       description={undefined}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {DIGITAL_MARKETING_ITEMS.map((item) => (
-          <Link
-            key={item.id}
-            href={`/portfolio/${item.slug}`}
-            className="group flex flex-col rounded-xl bg-card border border-border shadow-sm overflow-hidden hover:border-primary/60 transition-colors"
-          >
-            <article className="flex flex-col h-full">
-              <div className="relative aspect-square bg-black/5">
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 25vw, 240px"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="px-3 py-3 sm:px-4 sm:py-4 flex flex-col gap-1.5">
-                <h3 className="text-sm font-semibold text-foreground line-clamp-2">
-                  {item.title}
-                </h3>
-              </div>
-            </article>
-          </Link>
-        ))}
-      </div>
+      <DigitalMarketingClient items={DIGITAL_MARKETING_ITEMS} />
     </SectionShell>
   );
 };
@@ -220,14 +189,6 @@ export const VideoProjectsSection: React.FC = () => {
       className="w-full bg-background text-foreground"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <header className="mb-10 text-center">
-          <p className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase">
-            Portfolio
-          </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight text-primary">
-            Video Projects
-          </h2>
-        </header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {VIDEO_PROJECTS.map((video) => (
@@ -248,12 +209,6 @@ export const VideoProjectsSection: React.FC = () => {
                   {/* Subtle overlay on hover to echo the reference UI */}
                   <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-
-                <div className="px-3 py-3 sm:px-4 sm:py-4 flex flex-col gap-1.5">
-                  <h3 className="text-sm font-semibold text-foreground line-clamp-2">
-                    {video.title}
-                  </h3>
-                </div>
               </article>
             </Link>
           ))}
@@ -264,13 +219,6 @@ export const VideoProjectsSection: React.FC = () => {
 };
 
 export const WebProjectsSection: React.FC = () => {
-  const items = [
-    "Landing pages that convert",
-    "Brand-first marketing sites",
-    "Product presentation pages",
-    "Micro-sites for campaigns",
-  ];
-
   return (
     <SectionShell
       id="web-projects"
@@ -278,16 +226,7 @@ export const WebProjectsSection: React.FC = () => {
       title="Web Projects"
       description="Modern, responsive web experiences that keep the brand front and center."
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-        {items.map((item) => (
-          <div
-            key={item}
-            className="rounded-xl bg-card border border-border px-4 py-5 text-sm text-foreground shadow-sm"
-          >
-            {item}
-          </div>
-        ))}
-      </div>
+      <WebProjectsClient items={WEB_PROJECTS_ITEMS} />
     </SectionShell>
   );
 };
@@ -295,7 +234,11 @@ export const WebProjectsSection: React.FC = () => {
 export const Portfolio: React.FC = () => {
   return (
     <div className="flex flex-col">
-      <PortfolioHeroSection />
+      <PortfolioHeroSection
+        title="Portfolio"
+        description="Explore campaigns, video stories, and web experiences crafted for ambitious brands"
+        backgroundImage="https://plus.unsplash.com/premium_photo-1678565869434-c81195861939?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2ViJTIwZGV2ZWxvcGVyfGVufDB8fDB8fHww"
+      />
       <SectionShell
         eyebrow="Portfolio"
         title="Explore our work"

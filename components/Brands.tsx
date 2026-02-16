@@ -13,12 +13,12 @@ const brands = [
 export const Brands: React.FC = () => {
   return (
     <section className="pt-6 pb-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="flex flex-nowrap justify-center items-center gap-8 lg:gap-12 overflow-x-auto">
+      <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 text-center overflow-hidden">
+        <div className="flex flex-nowrap justify-start md:justify-center items-center gap-8 lg:gap-12 overflow-x-auto pb-4 scrollbar-hide">
           {brands.map((brand) => (
             <div 
               key={brand.name} 
-              className="flex flex-col items-center justify-center group relative shrink-0 transition-all duration-300"
+              className="flex flex-col items-center justify-center group relative shrink-0 transition-all duration-300 min-w-[100px]"
             >
               <Image
                 src={brand.image}

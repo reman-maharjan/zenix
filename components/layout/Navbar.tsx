@@ -180,14 +180,14 @@ const Navbar: React.FC = () => {
         {/* CTA Buttons */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="tel:+9779843590789"
+            href="tel:+9779708835021"
             className="inline-flex items-center gap-2 rounded-full bg-[#c7ab86] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#c7ab86]/90 transition-colors"
           >
             <Phone className="h-4 w-4" />
             <span>Call now</span>
           </a>
           <a
-            href="https://wa.me/9779843590789?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20working%20with%20Zenix."
+            href="https://wa.me/9779708835021?text=Hi%2C%20I%27d%20like%20to%20learn%20more%20about%20working%20with%20Zenix."
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full border  px-5 py-2.5 text-sm font-semibold text-[#128C7E] bg-white hover:bg-[#e9f8f0] transition-colors"

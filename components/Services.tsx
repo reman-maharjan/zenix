@@ -1,6 +1,5 @@
-'use client'; 
 import React, { useState } from 'react';
-import { Badge } from './ui/Badge';
+import Image from 'next/image';
 import { Plus, X } from 'lucide-react';
 
 interface Service {
@@ -67,16 +66,16 @@ export const Services: React.FC = () => {
           >
             {/* Header / Toggle Bar */}
             <div 
-              className="flex justify-between items-center p-6 md:p-10 cursor-pointer"
+              className="flex justify-between items-center p-5 sm:p-8 md:p-10 cursor-pointer"
               onClick={() => toggleService(service.id)}
             >
-              <h3 className="text-2xl md:text-2xl font-medium text-gray-900">{service.title}</h3>
+              <h3 className="text-xl sm:text-2xl font-medium text-gray-900">{service.title}</h3>
               <button 
-                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                   openId === service.id ? 'bg-[#c7ab86] rotate-0' : 'bg-white border border-gray-200 rotate-0 hover:bg-[#c7ab86] hover:border-[#c7ab86]'
                 }`}
               >
-                {openId === service.id ? <X size={24} className="text-black" /> : <Plus size={24} className="text-black" />}
+                {openId === service.id ? <X size={20} className="text-black sm:w-6 sm:h-6" /> : <Plus size={20} className="text-black sm:w-6 sm:h-6" />}
               </button>
             </div>
 
@@ -86,23 +85,24 @@ export const Services: React.FC = () => {
                 openId === service.id ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-              <div className="px-6 md:px-10 pb-10">
+              <div className="px-5 sm:px-8 md:px-10 pb-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
                    {/* Left: Image */}
-                   <div className="rounded-[2rem] overflow-hidden h-[300px] md:h-[400px] w-full shadow-sm">
-                     <img 
+                    <div className="rounded-[2rem] overflow-hidden h-[250px] sm:h-[350px] md:h-[400px] w-full shadow-sm relative">
+                     <Image 
                         src={service.image} 
                         alt={service.title}
-                        className="w-full h-full object-cover" 
+                        fill
+                        className="object-cover" 
                      />
                    </div>
 
                    {/* Right: Content */}
                    <div className="flex flex-col justify-center">
-                      <h4 className="text-3xl md:text-5xl font-normal text-gray-900 mb-6 leading-tight">
+                      <h4 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-gray-900 mb-4 sm:mb-6 leading-tight">
                         {service.title}
                       </h4>
-                      <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                      <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8">
                         {service.description}
                       </p>
                    </div>

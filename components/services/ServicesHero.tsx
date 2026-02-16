@@ -7,12 +7,23 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 
 const ServicesHero: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[70vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#c7ab86]/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#c7ab86]/5 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#c7ab86]/5 rounded-full blur-3xl" />
+    <section className="relative w-full min-h-[70vh] md:min-h-[85vh] mt-10 md:mt-12 flex items-center justify-center overflow-hidden bg-white text-gray-900">
+      {/* Subtle grid background pattern */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(0deg, transparent, transparent 50px, currentColor 50px, currentColor 51px), repeating-linear-gradient(90deg, transparent, transparent 50px, currentColor 50px, currentColor 51px)',
+          }}
+        />
+      </div>
+
+      {/* Soft background accents */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-32 -right-10 h-72 w-72 rounded-full bg-[#c7ab86]/10 blur-3xl" />
+        <div className="absolute bottom-0 left-10 h-56 w-56 rounded-full bg-[#c7ab86]/10 blur-3xl" />
+        <div className="absolute top-1/2 right-1/4 h-40 w-40 rounded-full border border-[#c7ab86]/20" />
       </div>
 
       {/* Content */}

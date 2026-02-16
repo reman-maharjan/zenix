@@ -56,7 +56,7 @@ const cardVariants: Variants = {
 
 export const Testimonials: React.FC = () => {
   return (
-    <section className="py-20 md:py-24 bg-[#faf7f3] relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-[#faf7f3] relative overflow-hidden">
       {/* Subtle grid background */}
       <div className="absolute inset-0 opacity-40 pointer-events-none">
         <div
@@ -69,12 +69,12 @@ export const Testimonials: React.FC = () => {
       </div>
 
       <div className="container max-w-7xl mx-auto px-6 md:px-12 relative">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
           <div className="space-y-4 max-w-xl">
             <div className="flex justify-start md:justify-start">
               <Badge>Testimonials</Badge>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 tracking-tight">
               Words from teams we work with.
             </h2>
             <p className="text-sm md:text-base text-gray-600 leading-relaxed">
@@ -95,9 +95,9 @@ export const Testimonials: React.FC = () => {
             <motion.article
               key={review.id}
               variants={cardVariants}
-              className="group bg-white/80 backdrop-blur-sm rounded-3xl p-7 md:p-8 border border-gray-200/70 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col relative overflow-hidden"
+              className="group bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-gray-200/70 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col relative overflow-hidden"
             >
-              <Quote className="absolute -top-4 -right-4 text-gray-100/80 fill-gray-100/80 w-20 h-20 pointer-events-none" />
+              <Quote className="absolute -top-4 -right-4 text-gray-100/80 fill-gray-100/80 w-16 h-16 sm:w-20 sm:h-20 pointer-events-none" />
 
               <div className="flex gap-1 mb-4 relative z-10">
                 {[1, 2, 3, 4, 5].map((s) => (
